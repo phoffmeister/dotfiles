@@ -1,4 +1,6 @@
 URxvt.scrollBar: false
+URxvt.perl-ext-common: fullscreen
+URxvt.keysym.F11: perl:fullscreen:switch
 
 ! Base16 OceanicNext
 ! Scheme: https://github.com/voronianski/oceanic-next-color-scheme
@@ -38,6 +40,4 @@ URxvt*color21:                        #CDD3DE
 URxvt*transparent:                    true
 URxvt*shading:                        5
 
-URxvt.font: xft:SauceCodePowerline\-Bold, FontAwesome, Icons:size=12
-URxvt.letterSpace: -1
-
+Rxvt*font: xft:Source\ Code\ Pro\ Medium:pixelsize=18:antialias=true:hinting=true,xft:Source\ Code\ Pro\ Medium:pixelsize=18:antialias=true:hinting=true
