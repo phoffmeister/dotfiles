@@ -30,3 +30,4 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 
 nnoremap <leader>t :TagbarToggle<cr>
 nnoremap <leader>p :CtrlP<cr>
+tnoremap <Esc> <C-\><C-n>
