@@ -1,56 +1,64 @@
-call plug#begin('~/.local/share/nvim/plugged')
-Plug 'nvie/vim-flake8'
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/gv.vim'
+Plug 'masukomi/vim-markdown-folding'
+Plug 'mhinz/vim-signify'
+Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'majutsushi/tagbar'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tpope/vim-fugitive'
+Plug 'vim-scripts/loremipsum'
 call plug#end()
 
 filetype plugin indent on
 
-"go to the same position in file
-autocmd BufReadPost *
-     \ if line("'\"") > 0 && line("'\"") <= line("$") |
-     \   exe "normal! g`\"" |
-     \ endif
-
-"airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-
 set number
-set listchars=eol:↵,space:␣
-
+set wrap
+set listchars=tab:▸\ ,eol:⏎,trail:X,space:␣,extends:>,precedes:< "☠
+set expandtab " tabs ftw
+set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
+set tabstop=2 " the visible width of tabs
+set shiftwidth=2 " number of spaces to use for indent and unindent
+set shiftround " round indent to a multiple of 'shiftwidth'
+set ignorecase " ignore case while search
+set smartcase " ignore case as long as the search term is all lower case
 let mapleader = " "
-"cheat go to first non whitespace char | H
-nnoremap H ^
-"cheat go to last non whitespace char | L
-nnoremap L g_
-
-nnoremap <space> <nop>
-"cheat write file | leader-w
-nnoremap <leader>w :w<cr>
-"cheat quit | leader-q
-nnoremap <leader>q :q<cr>
-"cheat no highlight | leader-0
-nnoremap <leader>0 :nohl<cr>
-"cheat show whitespace | leader-1
-nnoremap <leader>1 :set list!<cr>
-"cheat surround word with \" | leader-\"
-nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
-"cheat surround word with \' | leader-\'
-nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
-
-"cheat edit vim config | leader-e-v
-nnoremap <leader>ev :split $MYVIMRC<cr>
-"cheat load vim config | leader-e-v
+noremap <space> <nop>
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap - ddp
+nnoremap _ ddkP
+nnoremap <leader>w :w<cr>
+nnoremap <leader>o :Vex .<cr>
+nnoremap <leader>d :bd<cr>
+nnoremap <leader>n :bn<cr>
+nnoremap <leader>q :q<cr>
+nnoremap <leader>0 :nohl<cr>
+nnoremap <leader>1 :set list!<cr>
 
-"cheat open tagbar | leader-t
-nnoremap <leader>t :TagbarToggle<cr>
-"cheat open ctrl-p | leader-p
-nnoremap <leader>p :CtrlP<cr>
-"cheat exit terminal mode | <esc>
-tnoremap <Esc> <C-\><C-n>
+let g:python3_host_prog = '$HOME/.pyenv/versions/neovim3/bin/python'
+
+" move selected block up or down
+xnoremap K :move '<-2<CR>gv-gv
+xnoremap J :move '>+1<CR>gv-gv
+
+" copy and paste from clipboard
+vnoremap <leader>c "+y
+nnoremap <leader>v "+p
+
+" surround word with quotes
+nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
+nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
+
+" move to the beginning/ end of a line with cap H/ L
+nnoremap L $
+nnoremap H ^
+
+" use the arrow keys to resize splits
+nnoremap <Up> :resize +2<CR>
+nnoremap <Down> :resize -2<CR>
+nnoremap <Left> :vertical resize +2<CR>
+nnoremap <Right> :vertical resize -2<CR>
+
+" replace esc with jk and force to use it since esc wont do anything in
+" insert-modek
+inoremap jk <esc>
+inoremap <esc> <nop>
