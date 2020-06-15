@@ -41,7 +41,7 @@ nnoremap _ ddkP
 nnoremap <leader>w :w<cr>
 " --cheat save file | <leader>w
 
-nnoremap <leader>o :Vex .<cr>
+nnoremap <leader>o :Explore<cr>
 " --cheat file explorer | <leader>o
 
 nnoremap <leader>d :bd<cr>
@@ -94,4 +94,7 @@ nnoremap <Right> :vertical resize -2<CR>
 
 inoremap jk <esc>
 inoremap <esc> <nop>
-" --cheat get out of insert mode | jk 
+" --cheat get out of insert mode | jk
+
+let g:netrw_liststyle=3
+
