@@ -17,7 +17,7 @@ set listchars=tab:▸\ ,eol:⏎,trail:X,space:␣,extends:>,precedes:< "☠
 set expandtab " tabs ftw
 set smarttab " tab respects 'tabstop', 'shiftwidth', and 'softtabstop'
 set tabstop=2 " the visible width of tabs
-set shiftwidth=2 " number of spaces to use for indent and unindent
+set shiftwidth=4 " number of spaces to use for indent and unindent
 set shiftround " round indent to a multiple of 'shiftwidth'
 set ignorecase " ignore case while search
 set smartcase " ignore case as long as the search term is all lower case
@@ -41,7 +41,7 @@ nnoremap _ ddkP
 nnoremap <leader>w :w<cr>
 " --cheat save file | <leader>w
 
-nnoremap <leader>o :Explore<cr>
+nnoremap <leader>o :Explore .<cr>
 " --cheat file explorer | <leader>o
 
 nnoremap <leader>d :bd<cr>
