@@ -97,4 +97,5 @@ inoremap <esc> <nop>
 " --cheat get out of insert mode | jk
 
 let g:netrw_liststyle=3
+let g:netrw_banner=0
 
