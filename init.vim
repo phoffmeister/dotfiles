@@ -1,5 +1,6 @@
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/gv.vim'
+Plug 'pangloss/vim-javascript'
 Plug 'masukomi/vim-markdown-folding'
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
