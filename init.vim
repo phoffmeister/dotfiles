@@ -71,7 +71,7 @@ xnoremap J :move '>+1<CR>gv-gv
 vnoremap <leader>c "+y
 " --cheat copy visual to clipboard | <leader>c
 
-nnoremap <leader>v "+p
+nnoremap <leader>v o<esc>"+p
 " --cheat paste from clipboard | <leader>v
 
 nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
