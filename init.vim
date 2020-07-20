@@ -7,6 +7,10 @@ Plug 'tpope/vim-rhubarb'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-scripts/loremipsum'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
 filetype plugin indent on
@@ -58,8 +62,8 @@ nnoremap <leader>0 :nohl<cr>
 
 nnoremap <leader>1 :set list!<cr>
 " --cheat show some whitespace | <leader>1
+let g:python3_host_prog = expand('$HOME/.pyenv/versions/neovim3/bin/python')
 
-let g:python3_host_prog = '$HOME/.pyenv/versions/neovim3/bin/python'
 
 xnoremap K :move '<-2<CR>gv-gv
 " --cheat move visual chunk up | K
@@ -99,3 +103,13 @@ inoremap <esc> <nop>
 let g:netrw_liststyle=3
 let g:netrw_banner=0
 
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+let g:deoplete#enable_at_startup = 1
+
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html Prettier
