@@ -1,5 +1,6 @@
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/gv.vim'
+Plug 'morhetz/gruvbox'
 Plug 'pangloss/vim-javascript'
 Plug 'masukomi/vim-markdown-folding'
 Plug 'mhinz/vim-signify'
@@ -7,11 +8,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vim-scripts/loremipsum'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
 filetype plugin indent on
@@ -104,13 +100,4 @@ inoremap <esc> <nop>
 let g:netrw_liststyle=3
 let g:netrw_banner=0
 
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-let g:deoplete#enable_at_startup = 1
-
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue,*.yaml,*.html Prettier
+autocmd vimenter * ++nested colorscheme gruvbox
