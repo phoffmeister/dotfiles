@@ -1,0 +1,29 @@
+set exrc
+set hidden
+set noerrorbells
+set tabstop=4
+set shiftwidth=4
+set shiftwidth=4
+set smartindent
+set smarttab
+set expandtab
+set number
+set wrap
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set incsearch
+set termguicolors
+set scrolloff=8
+set noshowmode
+set completeopt=menuone,noinsert,noselect
+set signcolumn=yes
+set listchars=tab:▸\ ,eol:⏎,trail:X,space:␣,extends:>,precedes:< "☠
+set ignorecase
+set smartcase
+set cmdheight=2
+set colorcolumn=80
+set updatetime=50
+
+set shortmess+=c
