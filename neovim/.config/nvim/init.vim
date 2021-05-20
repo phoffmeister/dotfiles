@@ -21,6 +21,7 @@ colorscheme gruvbox
 highlight Normal guibg=none
 
 luafile ~/.config/nvim/lua/lsp/tsserver.lua
+luafile ~/.config/nvim/lua/lsp/pyright.lua
 luafile ~/.config/nvim/lua/lsp/rust.lua
 luafile ~/.config/nvim/lua/compe-config.lua
 
