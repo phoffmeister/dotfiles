@@ -1,31 +1,42 @@
 filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
-Plug 'cespare/vim-toml'
-Plug 'nvim-lua/popup.nvim'
+Plug 'tpope/vim-commentary'
+Plug 'airblade/vim-gitgutter'
+Plug 'rhysd/vim-clang-format'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-lua/lsp_extensions.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'gruvbox-community/gruvbox'
+Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'neovim/nvim-lspconfig'
 Plug 'mbbill/undotree'
-Plug 'hrsh7th/nvim-compe'
-Plug 'hrsh7th/vim-vsnip'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/nvim-compe'
 call plug#end()
 
-colorscheme gruvbox
+colorscheme onedark
 highlight Normal guibg=none
+
+source ~/.config/nvim/keymaps.vim
+source ~/.config/nvim/lsp.vim
+source ~/.config/nvim/netrw.vim
+source ~/.config/nvim/prettier.vim
+source ~/.config/nvim/sets.vim
+source ~/.config/nvim/telescope.vim
+source ~/.config/nvim/undotree.vim
+source ~/.config/nvim/cmp.vim
 
 luafile ~/.config/nvim/lua/lsp/tsserver.lua
 luafile ~/.config/nvim/lua/lsp/pyright.lua
-luafile ~/.config/nvim/lua/lsp/rust.lua
-luafile ~/.config/nvim/lua/compe-config.lua
 
-augroup myrust
-    au!
-    autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
-augroup end
+

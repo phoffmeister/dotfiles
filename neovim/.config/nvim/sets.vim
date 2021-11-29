@@ -19,7 +19,7 @@ set scrolloff=8
 set noshowmode
 set completeopt=menuone,noinsert,noselect
 set signcolumn=yes
-set listchars=tab:▸\ ,eol:⏎,trail:X,space:␣,extends:>,precedes:< "☠
+set listchars=tab:▸\ ,eol:⏎,trail:☠,space:␣,extends:>,precedes:< "☠
 set ignorecase
 set smartcase
 set cmdheight=2
