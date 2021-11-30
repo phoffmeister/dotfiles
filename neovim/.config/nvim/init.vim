@@ -41,6 +41,7 @@ source ~/.config/nvim/telescope.vim
 source ~/.config/nvim/undotree.vim
 source ~/.config/nvim/cmp.vim
 source ~/.config/nvim/nerdtree.vim
+source ~/.config/nvim/buffergator.vim
 
 luafile ~/.config/nvim/lua/lsp/tsserver.lua
 luafile ~/.config/nvim/lua/lsp/pyright.lua
