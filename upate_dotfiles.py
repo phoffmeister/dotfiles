@@ -5,6 +5,7 @@ import os
 targets = dict()
 targets['neovim'] = (os.path.abspath('neovim/.config/nvim'), os.path.expanduser('~/.config/nvim'))
 targets['tmux'] = (os.path.abspath('tmux/.tmux.conf'), os.path.expanduser('~/.tmux.conf'))
+targets['kitty'] = (os.path.abspath('kitty/.config/kitty'), os.path.expanduser('~/.config/kitty'))
 
 if __name__ == "__main__":
     for target in targets:
