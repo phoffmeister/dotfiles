@@ -1,6 +1,7 @@
 filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
+Plug 'jeetsukumaran/vim-buffergator'
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
