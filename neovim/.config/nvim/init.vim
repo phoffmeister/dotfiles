@@ -1,6 +1,9 @@
 filetype plugin indent on
 
 call plug#begin('~/.vim/plugged')
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-commentary'
 Plug 'airblade/vim-gitgutter'
 Plug 'rhysd/vim-clang-format'
@@ -35,6 +38,7 @@ source ~/.config/nvim/sets.vim
 source ~/.config/nvim/telescope.vim
 source ~/.config/nvim/undotree.vim
 source ~/.config/nvim/cmp.vim
+source ~/.config/nvim/nerdtree.vim
 
 luafile ~/.config/nvim/lua/lsp/tsserver.lua
 luafile ~/.config/nvim/lua/lsp/pyright.lua
