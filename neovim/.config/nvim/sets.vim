@@ -17,7 +17,7 @@ set incsearch
 set termguicolors
 set scrolloff=8
 set noshowmode
-set completeopt=menuone,noinsert,noselect
+set completeopt=menu,menuone,noinsert,noselect
 set signcolumn=yes
 set listchars=tab:▸\ ,eol:⏎,trail:☠,space:␣,extends:>,precedes:< "☠
 set ignorecase
@@ -25,5 +25,5 @@ set smartcase
 set cmdheight=2
 set colorcolumn=80
 set updatetime=50
-
+set spelllang=en
 set shortmess+=c
