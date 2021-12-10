@@ -33,7 +33,6 @@ colorscheme onedark
 highlight Normal guibg=none
 
 source ~/.config/nvim/keymaps.vim
-source ~/.config/nvim/lsp.vim
 source ~/.config/nvim/netrw.vim
 source ~/.config/nvim/prettier.vim
 source ~/.config/nvim/sets.vim
@@ -43,8 +42,7 @@ source ~/.config/nvim/cmp.vim
 source ~/.config/nvim/nerdtree.vim
 source ~/.config/nvim/buffergator.vim
 
-luafile ~/.config/nvim/lua/lsp/tsserver.lua
-luafile ~/.config/nvim/lua/lsp/pyright.lua
+source ~/.config/nvim/lsp.vim
 
 lua require('Comment').setup()
 
