@@ -322,7 +322,8 @@ require"lspconfig".efm.setup {
     settings = {
         rootMarkers = {".git/"},
         languages = {
-            lua = {{formatCommand = "lua-format -i", formatStdin = true}}
+            lua = {{formatCommand = "lua-format -i", formatStdin = true}},
+            python = {{formatCommand = "yapf", formatStdin = true}}
         }
     }
 }
