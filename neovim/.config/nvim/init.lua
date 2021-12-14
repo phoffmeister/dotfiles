@@ -89,11 +89,19 @@ vim.o.updatetime = 50
 vim.o.spelllang = 'en'
 vim.o.shortmess = vim.o.shortmess .. 'c'
 
+local function trailing()
+  local space = vim.fn.search([[\s\+$]], 'nwc')
+  return space ~= 0 and "TW:"..space or ""
+end
+
 require'lualine'.setup({
     options = {
         theme = 'onedark',
         section_separators = {left = '┊', right = '┊'},
         component_separators = {left = '┊', right = '┊'}
+    },
+    sections = {
+        lualine_z = { trailing },
     }
 })
 
