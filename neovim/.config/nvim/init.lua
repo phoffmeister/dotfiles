@@ -1,10 +1,8 @@
 -- Install packer
-local install_path = vim.fn.stdpath 'data' ..
-                         '/site/pack/packer/start/packer.nvim'
+local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-    vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' ..
-                       install_path)
+    vim.fn.execute('!git clone https://github.com/wbthomason/packer.nvim ' .. install_path)
 end
 
 vim.cmd [[
@@ -16,20 +14,16 @@ vim.cmd [[
 
 local use = require('packer').use
 require('packer').startup(function()
-    use 'wbthomason/packer.nvim' -- Package manager
-    use 'preservim/nerdtree'
+    use 'wbthomason/packer.nvim'
     use 'ryanoasis/vim-devicons'
-    use 'mattn/emmet-vim'
     use 'numToStr/Comment.nvim'
     use 'tpope/vim-fugitive'
     use 'tpope/vim-rhubarb'
     use 'rhysd/vim-clang-format'
     use 'nvim-treesitter/nvim-treesitter'
     use 'nvim-treesitter/nvim-treesitter-textobjects'
-    use 'nvim-treesitter/playground'
     use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
     use 'joshdick/onedark.vim'
-    use 'mbbill/undotree'
     use 'onsails/lspkind-nvim'
     use 'neovim/nvim-lspconfig'
     use 'hrsh7th/nvim-cmp'
@@ -40,9 +34,7 @@ require('packer').startup(function()
     use 'hrsh7th/cmp-cmdline'
     use 'saadparwaiz1/cmp_luasnip'
     use 'L3MON4D3/LuaSnip'
-
-    use {
-        'nvim-lualine/lualine.nvim',
+    use { 'nvim-lualine/lualine.nvim',
         requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
     use 'lukas-reineke/indent-blankline.nvim'
@@ -81,6 +73,7 @@ vim.opt.listchars = {
     extends = '>',
     precedes = '<'
 }
+
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.cmdheight = 2
@@ -89,31 +82,15 @@ vim.o.updatetime = 50
 vim.o.spelllang = 'en'
 vim.o.shortmess = vim.o.shortmess .. 'c'
 
-require'lualine'.setup({
-    options = {
-        theme = 'onedark',
-        section_separators = {left = '┊', right = '┊'},
-        component_separators = {left = '┊', right = '┊'}
-    },
-})
-
--- comment.nvim
-require('Comment').setup()
-
--- Remap space as leader key
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', {noremap = true, silent = true})
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Remap for dealing with word wrap
-vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'",
-                        {noremap = true, expr = true, silent = true})
-vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'",
-                        {noremap = true, expr = true, silent = true})
-vim.api.nvim_set_keymap('v', 'k', "v:count == 0 ? 'gk' : 'k'",
-                        {noremap = true, expr = true, silent = true})
-vim.api.nvim_set_keymap('v', 'j', "v:count == 0 ? 'gj' : 'j'",
-                        {noremap = true, expr = true, silent = true})
+-- Map blankline
+vim.g.indent_blankline_char = '┊'
+vim.g.indent_blankline_filetype_exclude = {'help', 'packer'}
+vim.g.indent_blankline_buftype_exclude = {'terminal', 'nofile'}
+vim.g.indent_blankline_show_trailing_blankline_indent = false
 
 -- Highlight on yank
 vim.cmd [[
@@ -123,11 +100,36 @@ vim.cmd [[
   augroup end
 ]]
 
--- Map blankline
-vim.g.indent_blankline_char = '┊'
-vim.g.indent_blankline_filetype_exclude = {'help', 'packer'}
-vim.g.indent_blankline_buftype_exclude = {'terminal', 'nofile'}
-vim.g.indent_blankline_show_trailing_blankline_indent = false
+-- Add leader shortcuts
+vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>fb', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>fh', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>ft', [[<cmd>lua require('telescope.builtin').tags()<CR>]], {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>fd', [[<cmd>lua require('telescope.builtin').grep_string()<CR>]], {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>fp', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>fo', [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]], {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>w', ':w<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>n', ':bn<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>d', ':bd<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('i', 'jk', '<esc>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<up>', ':resize +2<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<down>', ':resize -2<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<left>', ':vertical resize +2<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<right>', ':vertical resize -2<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>q', ':q<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>0', ':nohl<cr>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>1', ':lua vim.o.list = not vim.o.list<cr>', {noremap = true, silent = true})
+
+require'lualine'.setup({
+    options = {
+        theme = 'onedark',
+        section_separators = {left = '┊', right = '┊'},
+        component_separators = {left = '┊', right = '┊'}
+    },
+})
+
+require('Comment').setup()
 
 -- Gitsigns
 require('gitsigns').setup {
@@ -145,124 +147,20 @@ require('telescope').setup {
     defaults = {mappings = {i = {['<C-u>'] = false, ['<C-d>'] = false}}}
 }
 
--- Add leader shortcuts
-vim.api.nvim_set_keymap('n', '<leader><space>',
-                        [[<cmd>lua require('telescope.builtin').buffers()<CR>]],
-                        {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>ff',
-                        [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]],
-                        {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>fb',
-                        [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]],
-                        {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>fh',
-                        [[<cmd>lua require('telescope.builtin').help_tags()<CR>]],
-                        {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>ft',
-                        [[<cmd>lua require('telescope.builtin').tags()<CR>]],
-                        {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>fd',
-                        [[<cmd>lua require('telescope.builtin').grep_string()<CR>]],
-                        {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>fp',
-                        [[<cmd>lua require('telescope.builtin').live_grep()<CR>]],
-                        {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>fo',
-                        [[<cmd>lua require('telescope.builtin').tags{ only_current_buffer = true }<CR>]],
-                        {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>w', ':w<cr>',
-                        {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>n', ':bn<cr>',
-                        {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>d', ':bd<cr>',
-                        {noremap = true, silent = true})
-vim.api.nvim_set_keymap('i', 'jk', '<esc>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<up>', ':resize +2<cr>',
-                        {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<down>', ':resize -2<cr>',
-                        {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<left>', ':vertical resize +2<cr>',
-                        {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<right>', ':vertical resize -2<cr>',
-                        {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>q', ':q<cr>',
-                        {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>0', ':nohl<cr>',
-                        {noremap = true, silent = true})
-
 -- Treesitter configuration
-require('nvim-treesitter.configs').setup {
-    playground = {
-        enable = false,
-        disable = {},
-        updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-        persist_queries = false, -- Whether the query persists across vim sessions
-        keybindings = {
-            toggle_query_editor = 'o',
-            toggle_hl_groups = 'i',
-            toggle_injected_languages = 't',
-            toggle_anonymous_nodes = 'a',
-            toggle_language_display = 'I',
-            focus_language = 'f',
-            unfocus_language = 'F',
-            update = 'R',
-            goto_node = '<cr>',
-            show_help = '?'
-        }
-    },
-    highlight = {
-        enable = true -- false will disable the whole extension
-    },
-    incremental_selection = {
-        enable = true,
-        keymaps = {
-            init_selection = 'gnn',
-            node_incremental = 'grn',
-            scope_incremental = 'grc',
-            node_decremental = 'grm'
-        }
-    },
-    indent = {enable = true},
-    textobjects = {
-        select = {
-            enable = true,
-            lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-            keymaps = {
-                -- You can use the capture groups defined in textobjects.scm
-                ['af'] = '@function.outer',
-                ['if'] = '@function.inner',
-                ['ac'] = '@class.outer',
-                ['ic'] = '@class.inner'
-            }
-        },
-        move = {
-            enable = true,
-            set_jumps = true, -- whether to set jumps in the jumplist
-            goto_next_start = {
-                [']m'] = '@function.outer',
-                [']]'] = '@class.outer'
-            },
-            goto_next_end = {
-                [']M'] = '@function.outer',
-                [']['] = '@class.outer'
-            },
-            goto_previous_start = {
-                ['[m'] = '@function.outer',
-                ['[['] = '@class.outer'
-            },
-            goto_previous_end = {
-                ['[M'] = '@function.outer',
-                ['[]'] = '@class.outer'
-            }
-        }
-    }
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "all",
+  sync_install = false,
+  ignore_install = {},
+  highlight = {
+    enable = true,
+    disable = {},
+    additional_vim_regex_highlighting = false,
+  },
 }
 
 -- LSP settings
 local nvim_lsp = require('lspconfig')
-
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...)
         vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -271,10 +169,8 @@ local on_attach = function(client, bufnr)
         vim.api.nvim_buf_set_option(bufnr, ...)
     end
 
-    -- Enable completion triggered by <c-x><c-o>
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-    -- Mappings.
     local opts = {noremap = true, silent = true}
 
     -- See `:help vim.lsp.*` for documentation on any of the below functions
@@ -282,53 +178,28 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
     buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>',
-                   opts)
-    buf_set_keymap('n', '<space>D',
-                   '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
     buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>',
-                   opts)
+    buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>',
-                   opts)
+    buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
     buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
     buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-    buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>',
-                   opts)
+    buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
--- nvim-cmp supports additional completion capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
 local servers = {'pyright', 'rust_analyzer'}
 for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
         on_attach = on_attach,
         capabilities = capabilities,
-        flags = {debounce_text_changes = 150}
     }
 end
 
--- emf lsp setup
-require"lspconfig".efm.setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = {debounce_text_changes = 150},
-    init_options = {documentFormatting = true},
-    settings = {
-        rootMarkers = {".git/"},
-        languages = {
-            lua = {{formatCommand = "lua-format -i", formatStdin = true}},
-            python = {{formatCommand = "yapf", formatStdin = true}}
-        }
-    }
-}
-
--- nvim-cmp setup
 local lspkind = require'lspkind'
 local cmp = require'cmp'
 cmp.setup({
