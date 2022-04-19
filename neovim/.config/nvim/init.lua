@@ -14,32 +14,34 @@ vim.cmd [[
 
 local use = require('packer').use
 require('packer').startup(function()
-    use 'wbthomason/packer.nvim'
-    use 'ryanoasis/vim-devicons'
-    use 'numToStr/Comment.nvim'
-    use 'tpope/vim-fugitive'
-    use 'tpope/vim-rhubarb'
-    use 'rhysd/vim-clang-format'
-    use 'nvim-treesitter/nvim-treesitter'
-    use 'nvim-treesitter/nvim-treesitter-textobjects'
-    use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
-    use 'joshdick/onedark.vim'
-    use 'onsails/lspkind-nvim'
-    use 'neovim/nvim-lspconfig'
-    use 'hrsh7th/nvim-cmp'
+    use 'L3MON4D3/LuaSnip'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'hrsh7th/cmp-nvim-lua'
-    use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
-    use 'saadparwaiz1/cmp_luasnip'
-    use 'L3MON4D3/LuaSnip'
-    use { 'nvim-lualine/lualine.nvim',
-        requires = {'kyazdani42/nvim-web-devicons', opt = true}
-    }
+    use 'hrsh7th/nvim-cmp'
+    use 'joshdick/onedark.vim'
     use 'lukas-reineke/indent-blankline.nvim'
+    use 'mattn/emmet-vim'
+    use 'neovim/nvim-lspconfig'
+    use 'numToStr/Comment.nvim'
+    use 'nvim-treesitter/nvim-treesitter'
+    use 'nvim-treesitter/nvim-treesitter-textobjects'
+    use 'onsails/lspkind-nvim'
+    use 'rhysd/vim-clang-format'
+    use 'ryanoasis/vim-devicons'
+    use 'saadparwaiz1/cmp_luasnip'
+    use 'tpope/vim-fugitive'
+    use 'tpope/vim-rhubarb'
+    use 'wbthomason/packer.nvim'
     use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
+    use {'nvim-lualine/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true}}
+    use {'nvim-telescope/telescope.nvim', requires = {'nvim-lua/plenary.nvim'}}
 end)
+
+-- emmet
+vim.g.user_emmet_leader_key='<C-E>'
 
 vim.o.termguicolors = true
 vim.g.onedark_terminal_italics = 2
@@ -131,7 +133,6 @@ require'lualine'.setup({
 
 require('Comment').setup()
 
--- Gitsigns
 require('gitsigns').setup {
     signs = {
         add = {hl = 'GitGutterAdd', text = '+'},
@@ -142,14 +143,12 @@ require('gitsigns').setup {
     }
 }
 
--- Telescope
 require('telescope').setup {
     defaults = {mappings = {i = {['<C-u>'] = false, ['<C-d>'] = false}}}
 }
 
--- Treesitter configuration
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = "all",
+  ensure_installed = 'all',
   sync_install = false,
   ignore_install = {},
   highlight = {
@@ -159,7 +158,6 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
--- LSP settings
 local nvim_lsp = require('lspconfig')
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...)
@@ -192,12 +190,46 @@ end
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-local servers = {'pyright', 'rust_analyzer'}
+local runtime_path = vim.split(package.path, ';')
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
+
+local lua_settings = {
+    Lua = {
+      runtime = {
+        version = 'LuaJIT',
+        path = runtime_path,
+      },
+      diagnostics = {
+        globals = {'vim', 'love'},
+      },
+      workspace = {
+        library = {
+            vim.api.nvim_get_runtime_file("", true),
+            "${3rd}/love2d/library"
+        },
+        checkThirdParty = false,
+      },
+      telemetry = {
+        enable = false,
+      },
+    },
+  }
+
+local servers = {'pyright', 'rust_analyzer', 'sumneko_lua', 'clangd', 'tsserver', 'gopls'}
 for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup {
-        on_attach = on_attach,
-        capabilities = capabilities,
-    }
+    if lsp == 'sumneko_lua' then
+        nvim_lsp[lsp].setup {
+            on_attach = on_attach,
+            capabilities = capabilities,
+            settings = lua_settings
+        }
+    else
+        nvim_lsp[lsp].setup {
+            on_attach = on_attach,
+            capabilities = capabilities,
+        }
+    end
 end
 
 local lspkind = require'lspkind'
