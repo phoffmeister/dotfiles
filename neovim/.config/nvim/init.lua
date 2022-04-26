@@ -41,10 +41,13 @@ end)
 
 vim.cmd [[colorscheme onedark]]
 
-require"nvim-defaults".setup()
-require"keymaps-init".setup()
-require"lsp-init".setup()
-require"cmp-init".setup()
+require"user-defaults".setup()
+require"user-keymaps".setup()
+require"user-lsp".setup()
+require"user-cmp".setup()
+require"user-luasnip".setup()
+
+
 require"indent_blankline".setup {
     space_char_blank_line = " ",
     show_current_context = true,
@@ -80,3 +83,4 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
