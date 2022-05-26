@@ -39,6 +39,9 @@ M.setup = function ()
     vim.o.spelllang = 'en'
     vim.o.shortmess = vim.o.shortmess .. 'c'
 
+    vim.opt.laststatus = 3
+    vim.opt.winbar = '%=%m %f'
+
     -- Highlight on yank
     vim.cmd [[
       augroup YankHighlight
