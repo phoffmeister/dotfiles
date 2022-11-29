@@ -42,6 +42,8 @@ M.setup = function ()
     vim.opt.laststatus = 3
     vim.opt.winbar = '%=%m %f'
 
+    vim.g.db_ui_save_location = '~/.config/db_ui'
+
     -- Highlight on yank
     vim.cmd [[
       augroup YankHighlight

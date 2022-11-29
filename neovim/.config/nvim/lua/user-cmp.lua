@@ -20,6 +20,8 @@ M.setup = function ()
             ['<C-Space>'] = cmp.mapping.complete(),
         },
         sources = {
+            {name = 'vim-dadbod-completion'},
+            {name = 'neorg'},
             {name = 'nvim_lua'},
             {name = 'nvim_lsp'},
             {name = 'path'},
