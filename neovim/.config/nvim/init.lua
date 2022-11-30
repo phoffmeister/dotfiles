@@ -15,6 +15,7 @@ vim.cmd [[
 local use = require('packer').use
 require('packer').startup(function()
     use 'L3MON4D3/LuaSnip'
+    use 'windwp/nvim-autopairs'
     use 'prettier/vim-prettier'
     use 'mbbill/undotree'
     use 'hrsh7th/cmp-buffer'
@@ -47,6 +48,7 @@ end)
 
 vim.cmd [[colorscheme dracula]]
 
+require "nvim-autopairs".setup({})
 require "user-defaults".setup()
 require "user-keymaps".setup()
 require "user-lsp".setup()
