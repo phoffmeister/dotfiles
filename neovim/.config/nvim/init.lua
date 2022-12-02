@@ -15,6 +15,7 @@ vim.cmd [[
 local use = require('packer').use
 require('packer').startup(function()
     use 'L3MON4D3/LuaSnip'
+    use 'windwp/nvim-autopairs'
     use 'prettier/vim-prettier'
     use 'mbbill/undotree'
     use 'hrsh7th/cmp-buffer'
@@ -54,6 +55,7 @@ require "user-cmp".setup()
 require "user-luasnip".setup()
 
 
+require "nvim-autopairs".setup ()
 require "indent_blankline".setup {
     space_char_blank_line = " ",
     show_current_context = true,
