@@ -34,7 +34,6 @@ end)
 
 vim.cmd [[colorscheme dracula]]
 
-require "nvim-autopairs".setup({})
 require "user-defaults".setup()
 require "user-keymaps".setup()
 require "user-lsp".setup()
