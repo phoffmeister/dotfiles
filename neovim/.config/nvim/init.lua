@@ -9,6 +9,7 @@ require('packer').startup(function()
         requires = {
             'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
+            'jose-elias-alvarez/null-ls.nvim',
             'j-hui/fidget.nvim',
         }
     }
@@ -228,6 +229,11 @@ require('lspconfig').sumneko_lua.setup {
             telemetry = { enable = false },
         },
     },
+}
+
+local null_ls = require("null-ls")
+null_ls.setup {
+    sources = { null_ls.builtins.formatting.black }
 }
 
 local cmp = require 'cmp'
