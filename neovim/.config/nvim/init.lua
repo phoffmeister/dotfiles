@@ -57,7 +57,7 @@ require('packer').startup(function()
     use 'lukas-reineke/indent-blankline.nvim'
     use 'numToStr/Comment.nvim'
     use 'ryanoasis/vim-devicons'
-    use 'dracula/vim'
+    use 'rose-pine/neovim'
     use {
         'nvim-lualine/lualine.nvim',
         requires = {
@@ -73,7 +73,7 @@ require('packer').startup(function()
     }
 end)
 
-vim.cmd [[colorscheme dracula]]
+vim.cmd [[colorscheme rose-pine]]
 
 vim.o.termguicolors = true
 vim.o.exrc = true
@@ -206,7 +206,11 @@ for _, lsp in ipairs(servers) do
     }
 end
 
-require('fidget').setup()
+require('fidget').setup{
+    text = {
+        spinner = "moon",
+    }
+}
 
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, 'lua/?.lua')
