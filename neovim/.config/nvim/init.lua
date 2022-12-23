@@ -239,6 +239,8 @@ null_ls.setup {
     sources = { null_ls.builtins.formatting.black }
 }
 
+require('snip').setup()
+
 local cmp = require 'cmp'
 cmp.setup({
     snippet = {
