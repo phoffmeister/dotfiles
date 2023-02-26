@@ -206,7 +206,7 @@ for _, lsp in ipairs(servers) do
     }
 end
 
-require('fidget').setup{
+require('fidget').setup {
     text = {
         spinner = "moon",
     }
@@ -238,6 +238,8 @@ local null_ls = require("null-ls")
 null_ls.setup {
     sources = { null_ls.builtins.formatting.black }
 }
+
+require('snip').setup()
 
 local cmp = require 'cmp'
 cmp.setup({
