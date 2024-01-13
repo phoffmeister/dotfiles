@@ -15,7 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: leader has to be set before lazy
 require'phoffmeister.leader'.setup()
 
-require'lazy'.setup('lazyplugins')
+require'lazy'.setup('phoffmeister.lazyplugins')
 
 require'phoffmeister.sets'.setup()
 require'phoffmeister.yankonhighlight'.setup()
