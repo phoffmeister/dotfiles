@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 require'phoffmeister.leader'.setup()
 
 require'lazy'.setup('lazyplugins')
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'sumneko_lua', 'gopls' }
 
 require'phoffmeister.sets'.setup()
 require'phoffmeister.yankonhighlight'.setup()
