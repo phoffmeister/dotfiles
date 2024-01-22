@@ -19,6 +19,7 @@ return {
             vim.keymap.set('n', '<leader>fw', t_b.grep_string)
             vim.keymap.set('n', '<leader>fp', t_b.live_grep)
             vim.keymap.set('n', '<leader>fd', t_b.diagnostics)
+            vim.keymap.set('n', '<leader>fg', t_b.git_status)
         end
     },
 }
