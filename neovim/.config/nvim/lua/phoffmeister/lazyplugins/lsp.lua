@@ -35,8 +35,8 @@ return {
 
                 nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
             end
-            local servers = { 'lua_ls', 'clangd', 'rust_analyzer', 'pyright', 'tsserver', 'gopls',
-                'kotlin_language_server' }
+            local servers = { 'lua_ls', 'clangd', 'rust_analyzer', 'pyright', 'ts_ls', 'gopls',
+                'ruby_lsp', 'kotlin_language_server', }
             local capabilities = vim.lsp.protocol.make_client_capabilities()
             capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
             for _, lsp in ipairs(servers) do
@@ -51,27 +51,6 @@ return {
                                 },
                             }
                         }
-                    }
-                elseif lsp == "lua_ls" then
-                    local runtime_path = vim.split(package.path, ';')
-                    table.insert(runtime_path, 'lua/?.lua')
-                    table.insert(runtime_path, 'lua/?/init.lua')
-                    require('lspconfig').lua_ls.setup {
-                        on_attach = on_attach,
-                        capabilities = capabilities,
-                        settings = {
-                            Lua = {
-                                runtime = {
-                                    version = 'LuaJIT',
-                                    path = runtime_path,
-                                },
-                                diagnostics = {
-                                    globals = { 'vim' },
-                                },
-                                workspace = { library = vim.api.nvim_get_runtime_file('', true) },
-                                telemetry = { enable = false },
-                            },
-                        },
                     }
                 else
                     require('lspconfig')[lsp].setup {

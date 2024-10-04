@@ -1,23 +1,31 @@
 return {
-    -- TreeSitter
+    -- set the colorscheme first
+    {
+        "bluz71/vim-nightfly-colors",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.cmd([[colorscheme nightfly]])
+        end
+    },
+
     {
         'nvim-treesitter/nvim-treesitter',
-        config = function ()
-            require 'nvim-treesitter.configs'.setup {
-                auto_install = true,
-                highlight = {
-                    enable = true,
-                    additional_vim_regex_highlighting = false,
-                },
-            }
-        end
+        opts =  {
+            auto_install = true,
+            highlight = {
+                enable = true,
+                additional_vim_regex_highlighting = false,
+            },
+        }
     },
     'nvim-treesitter/nvim-treesitter-textobjects',
 
-    -- git goodies
+    -- tpope goodies
     'tpope/vim-fugitive',
     'tpope/vim-rhubarb',
     'tpope/vim-obsession',
+    'tpope/vim-unimpaired',
 
     -- formatting
     'rhysd/vim-clang-format',
@@ -40,7 +48,6 @@ return {
     },
     'rose-pine/neovim',
     'folke/tokyonight.nvim',
-    "bluz71/vim-nightfly-colors",
     {
         'nvim-lualine/lualine.nvim',
         opts = {},
@@ -49,18 +56,14 @@ return {
         }
     },
     'github/copilot.vim',
-
     {
         'nvim-tree/nvim-tree.lua',
-        config = function()
-            require "nvim-tree".setup({
-                actions = {
-                    open_file = {
-                        quit_on_open = true,
-                    }
+        opts = {
+            actions = {
+                open_file = {
+                    quit_on_open = true,
                 }
-            })
-        end
+            }
+        }
     },
-
 }

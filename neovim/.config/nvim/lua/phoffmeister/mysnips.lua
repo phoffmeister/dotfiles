@@ -50,20 +50,52 @@ local function set_keymaps()
     end)
 end
 
+local function uuid()
+    local id, _ = vim.fn.system('uuidgen'):gsub('\n', '')
+    return id
+end
+
+local function get_branch_tag()
+    local branch = vim.fn.system('git branch --show-current'):gsub('\n', '')
+    local tag = branch:match('(%w+-%d+)')
+    if not tag then
+        return '[TASKLESS]'
+    end
+    tag = tag:upper()
+    return '[' .. tag .. ']'
+end
+
 local function setup()
     set_keymaps()
     ls.add_snippets(
         "gitcommit", {
-        s("co", fmt("[{}-{}] {}", {
-            c(1, {
-                t("XBOX"),
-                t("DEAT"),
-                i(nil, "TASK"),
-            }),
-            i(2, "0000"),
-            i(0, "what did you do?"),
-        }))
-    })
+            s("co", fmt("[{}-{}] {}", {
+                c(1, {
+                    t("XBOX"),
+                    t("DEAT"),
+                    i(nil, "TASK"),
+                }),
+                i(2, "0000"),
+                i(0, "what did you do?"),
+            }))
+        })
+    ls.add_snippets(
+        'gitcommit', {
+            s('cc', fmt('{} {}', {
+                f(get_branch_tag, {}),
+                i(1, 'commit message'),
+            }))
+        })
+    ls.add_snippets(
+        'all', {
+            s({
+                trig = 'uuid',
+                name = 'UUID',
+                dscr = 'Generate a unique UUID'
+            }, {
+                d(1, function() return sn(nil, i(1, uuid())) end)
+            })
+        })
 end
 
 return {

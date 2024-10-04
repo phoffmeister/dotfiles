@@ -1,8 +1,7 @@
 return {
     {
         'lewis6991/gitsigns.nvim',
-        config = function()
-            require 'gitsigns'.setup {
+        opts = {
                 signs = {
                     add = { text = '+' },
                     change = { text = '~' },
@@ -29,6 +28,5 @@ return {
                     map('n', '<leader>hd', gs.diffthis)
                 end
             }
-        end
     }
 }
