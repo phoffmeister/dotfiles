@@ -12,10 +12,6 @@ local function setup()
     vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float)
     vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist)
     vim.keymap.set('n', '<leader>m', function() vim.cmd('e ~/notes/scratch.md') end)
-    vim.keymap.set('n', '<leader>ah', '<cmd>wincmd h<cr>')
-    vim.keymap.set('n', '<leader>aj', '<cmd>wincmd j<cr>')
-    vim.keymap.set('n', '<leader>ak', '<cmd>wincmd k<cr>')
-    vim.keymap.set('n', '<leader>al', '<cmd>wincmd l<cr>')
 end
 
 return {

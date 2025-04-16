@@ -33,5 +33,8 @@ require("lazy").setup({
   -- colorscheme that will be used when installing plugins.
   install = { colorscheme = { "nightfly" } },
   -- automatically check for plugin updates
-  checker = { enabled = true },
+  checker = {
+      enabled = true,
+      frequency = 604800, -- weekly
+  },
 })
