@@ -134,6 +134,7 @@ cmp.setup({
     )
 })
 
+local wanted_lsp_clients = { "lua_ls", "zls", "pyright", "rust_analyzer" }
 local capabilities = require 'cmp_nvim_lsp'.default_capabilities()
 
 vim.lsp.config('lua_ls', {
@@ -167,10 +168,15 @@ vim.lsp.config('lua_ls', {
     settings = {
         Lua = {}
     },
-    capabilities = capabilities,
 })
 
-vim.lsp.enable({ "lua_ls", "zls", "pyright", "rust_analyzer" })
+for _, lsp_client in ipairs(wanted_lsp_clients) do
+    vim.lsp.config(lsp_client, {
+        capabilities=capabilities,
+    })
+end
+vim.lsp.enable(wanted_lsp_clients)
+
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 
 require 'nvim-tree'.setup({
