@@ -159,7 +159,7 @@ vim.lsp.config('lua_ls', {
     capabilities = capabilities,
 })
 
-vim.lsp.enable({ "lua_ls", "zls" })
+vim.lsp.enable({ "lua_ls", "zls", "pyright", "rust_analyzer" })
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
 
 require 'nvim-tree'.setup({
