@@ -33,7 +33,7 @@ vim.opt.listchars = {
 
 vim.keymap.set('n', '<leader>0', ':nohl<CR>')
 vim.keymap.set('n', '<leader>1', function() vim.o.list = not vim.o.list end)
-vim.keymap.set('n', '<leader>o', ':update<CR> :source<CR>')
+vim.keymap.set('n', '<leader>o', ':update<CR>:source<CR>')
 vim.keymap.set('n', '<leader>w', ':write<CR>')
 vim.keymap.set('n', '<leader>q', ':quit<CR>')
 vim.keymap.set('i', 'jk', '<ESC>')
