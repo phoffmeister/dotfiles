@@ -59,6 +59,25 @@ vim.pack.add({
     { src = "https://github.com/ntpeters/vim-better-whitespace" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
     { src = "https://github.com/airblade/vim-gitgutter" },
+    {
+        src = "https://github.com/j-hui/fidget.nvim",
+        version = '4ec7bed6c86b671ddde03ca1b227343cfa3e65fa',
+    },
+})
+
+-- fidget
+require("fidget").setup({
+    progress = {
+        display = {
+            progress_icon = { "moon" },
+        },
+    },
+    notification = {
+        window = {
+            winblend = 15,
+            border = 'rounded',
+        },
+    },
 })
 
 
