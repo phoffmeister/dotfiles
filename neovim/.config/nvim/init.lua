@@ -47,6 +47,7 @@ vim.keymap.set('i', 'jk', '<ESC>')
 vim.pack.add({
     { src = "https://github.com/vague2k/vague.nvim" },
     { src = "https://github.com/dracula/vim" },
+    { src = "https://github.com/folke/tokyonight.nvim" },
     { src = "https://github.com/neovim/nvim-lspconfig" },
     { src = "https://github.com/nvim-lua/plenary.nvim" },
     { src = "https://github.com/nvim-telescope/telescope.nvim" },
@@ -195,5 +196,5 @@ vim.keymap.set('n', '<leader>fb', t_builtin.buffers, { desc = 'Telescope buffers
 vim.keymap.set('n', '<leader>fh', t_builtin.help_tags, { desc = 'Telescope help tags' })
 
 
-vim.cmd("colorscheme dracula")
+vim.cmd("colorscheme tokyonight-night")
 vim.cmd(":hi statusline guibg=NONE")
