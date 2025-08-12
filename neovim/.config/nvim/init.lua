@@ -1,9 +1,9 @@
 vim.o.number = true
--- vim.o.relativenumber = true
 vim.o.wrap = false
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
-vim.o.signcolumn = "yes"
+vim.o.signcolumn = "yes" -- also needed for gitgutter
+vim.o.updatetime = 100   -- also needed for gitgutter
 vim.o.swapfile = false
 vim.o.winborder = "rounded"
 vim.g.loaded_netrw = 1
@@ -51,6 +51,7 @@ vim.pack.add({
     { src = "https://github.com/hrsh7th/cmp-vsnip" },
     { src = "https://github.com/hrsh7th/vim-vsnip" },
     { src = "https://github.com/ntpeters/vim-better-whitespace" },
+    { src = "https://github.com/airblade/vim-gitgutter" },
 })
 
 vim.keymap.set('n', '<leader>y', ':ToggleWhitespace<CR>')
