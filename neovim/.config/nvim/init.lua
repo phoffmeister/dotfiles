@@ -96,8 +96,8 @@ require 'nvim-treesitter.configs'.setup {
 -- angry whitespace
 vim.keymap.set('n', '<leader>y', ':ToggleWhitespace<CR>')
 
+-- cmp
 local cmp = require 'cmp'
-
 cmp.setup({
     snippet = {
         expand = function(args)
@@ -156,7 +156,7 @@ vim.lsp.config('lua_ls', {
     settings = {
         Lua = {}
     },
-    capabilities = capabilities
+    capabilities = capabilities,
 })
 
 vim.lsp.enable({ "lua_ls", "zls" })
