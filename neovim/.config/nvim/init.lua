@@ -57,9 +57,24 @@ vim.pack.add({
     { src = "https://github.com/hrsh7th/cmp-vsnip" },
     { src = "https://github.com/hrsh7th/vim-vsnip" },
     { src = "https://github.com/ntpeters/vim-better-whitespace" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
     { src = "https://github.com/airblade/vim-gitgutter" },
 })
 
+
+-- treesitter
+require 'nvim-treesitter.configs'.setup {
+    ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "zig", "rust" },
+    sync_install = false,
+    auto_install = true,
+
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+    },
+}
+
+-- angry whitespace
 vim.keymap.set('n', '<leader>y', ':ToggleWhitespace<CR>')
 
 local cmp = require 'cmp'
