@@ -189,11 +189,11 @@ require 'nvim-tree'.setup({
 })
 vim.keymap.set('n', '<leader>ll', ':NvimTreeToggle<CR>', { desc = 'NvimTreeToggle' })
 
-local t_builtin = require 'telescope.builtin'
-vim.keymap.set('n', '<leader>ff', t_builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', t_builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', t_builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', t_builtin.help_tags, { desc = 'Telescope help tags' })
+local telescope = require 'telescope.builtin'
+vim.keymap.set('n', '<leader>ff', telescope.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fg', telescope.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>fb', telescope.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', telescope.help_tags, { desc = 'Telescope help tags' })
 
 
 vim.cmd("colorscheme tokyonight-night")
