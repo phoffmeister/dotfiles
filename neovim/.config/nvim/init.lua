@@ -57,6 +57,7 @@ vim.pack.add({
     { src = "https://github.com/hrsh7th/cmp-vsnip" },
     { src = "https://github.com/hrsh7th/vim-vsnip" },
     { src = "https://github.com/ntpeters/vim-better-whitespace" },
+    { src = "https://github.com/tpope/vim-fugitive" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
     { src = "https://github.com/airblade/vim-gitgutter" },
     { src = "https://github.com/natecraddock/sessions.nvim" },
