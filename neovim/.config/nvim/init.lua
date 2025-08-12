@@ -21,7 +21,7 @@ vim.o.spelllang = 'en'
 vim.o.laststatus = 3
 vim.o.winbar = '%=%m %f'
 vim.o.hidden = true
-vim.o.shortmess = vim.o.shortmess .. 'c'
+vim.o.shortmess = vim.o.shortmess .. 'cI'
 vim.opt.listchars = {
     tab = '▸~',
     eol = '⏎',
