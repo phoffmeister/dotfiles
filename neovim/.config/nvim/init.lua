@@ -68,7 +68,7 @@ vim.pack.add({
 })
 
 -- sessions
-local sessions = require'sessions'
+local sessions = require 'sessions'
 sessions.setup({
     session_filepath = vim.fn.stdpath("data") .. "/sessions",
     absolute = true,
@@ -172,7 +172,7 @@ vim.lsp.config('lua_ls', {
 
 for _, lsp_client in ipairs(wanted_lsp_clients) do
     vim.lsp.config(lsp_client, {
-        capabilities=capabilities,
+        capabilities = capabilities,
     })
 end
 vim.lsp.enable(wanted_lsp_clients)
