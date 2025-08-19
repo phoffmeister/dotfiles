@@ -186,7 +186,11 @@ require 'nvim-tree'.setup({
         open_file = {
             quit_on_open = true,
         }
-    }
+    },
+    git = {
+        enable = true,
+        ignore = false,
+    },
 })
 vim.keymap.set('n', '<leader>ll', ':NvimTreeToggle<CR>', { desc = 'NvimTreeToggle' })
 
