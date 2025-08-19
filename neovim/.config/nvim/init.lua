@@ -62,10 +62,8 @@ vim.pack.add({
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
     { src = "https://github.com/airblade/vim-gitgutter" },
     { src = "https://github.com/natecraddock/sessions.nvim" },
-    {
-        src = "https://github.com/j-hui/fidget.nvim",
-        version = '4ec7bed6c86b671ddde03ca1b227343cfa3e65fa',
-    },
+    { src = "https://github.com/j-hui/fidget.nvim" },
+    { src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
 })
 
 -- sessions
@@ -135,7 +133,7 @@ cmp.setup({
     )
 })
 
-local wanted_lsp_clients = { "lua_ls", "zls", "pyright", "rust_analyzer" }
+local wanted_lsp_clients = { "lua_ls", "zls", "pyright", "rust_analyzer", "ts_ls" }
 local capabilities = require 'cmp_nvim_lsp'.default_capabilities()
 
 vim.lsp.config('lua_ls', {
@@ -179,6 +177,7 @@ end
 vim.lsp.enable(wanted_lsp_clients)
 
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
+vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition)
 
 require 'nvim-tree'.setup({
     actions = {
