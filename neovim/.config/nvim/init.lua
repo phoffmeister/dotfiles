@@ -54,11 +54,12 @@ vim.pack.add({
     { src = "https://github.com/nvim-lua/plenary.nvim" },
     { src = "https://github.com/nvim-telescope/telescope.nvim" },
     { src = "https://github.com/nvim-tree/nvim-tree.lua" },
-    { src = "https://github.com/hrsh7th/nvim-cmp" },
-    { src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
-    { src = "https://github.com/hrsh7th/cmp-buffer" },
-    { src = "https://github.com/hrsh7th/cmp-vsnip" },
-    { src = "https://github.com/hrsh7th/vim-vsnip" },
+    {
+        src = "https://github.com/saghen/blink.cmp",
+        version = "v1.6.0",
+    },
+    { src = "https://github.com/rafamadriz/friendly-snippets" },
+    { src = "https://github.com/moyiz/blink-emoji.nvim" },
     { src = "https://github.com/ntpeters/vim-better-whitespace" },
     { src = "https://github.com/tpope/vim-fugitive" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
@@ -92,7 +93,6 @@ require("fidget").setup({
     },
 })
 
-
 -- treesitter
 require 'nvim-treesitter.configs'.setup {
     ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "zig", "rust" },
@@ -108,35 +108,46 @@ require 'nvim-treesitter.configs'.setup {
 -- angry whitespace
 vim.keymap.set('n', '<leader>y', ':ToggleWhitespace<CR>')
 
--- cmp
-local cmp = require 'cmp'
-cmp.setup({
-    snippet = {
-        expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body)
-        end
+
+-- blink.cmp
+require 'blink.cmp'.setup({
+    keymap = { preset = 'default' },
+    appearance = {
+        nerd_font_variant = 'mono'
     },
-    mapping = {
-        ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-        ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-        ['<C-e>'] = cmp.mapping.close(),
-    },
-    sources = cmp.config.sources({
-            { name = 'nvim_lsp' },
-            { name = 'vsnip' },
-        },
-        {
-            {
-                name = 'buffer',
-                max_item_count = 5,
+
+    completion = { documentation = { auto_show = true } },
+
+    sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer', 'emoji' },
+        providers = {
+            emoji = {
+                module = "blink-emoji",
+                name = "Emoji",
+                score_offset = 15,
+                opts = {
+                    insert = true,
+                    ---@type string|table|fun():table
+                    trigger = function()
+                        return { ":" }
+                    end,
+                },
+                should_show_items = function()
+                    return vim.tbl_contains(
+                        { "gitcommit", "markdown" },
+                        vim.o.filetype
+                    )
+                end,
             },
-        }
-    )
+        },
+    },
+
+    fuzzy = {
+        implementation = 'prefer_rust_with_warning',
+    },
 })
 
 local wanted_lsp_clients = { "lua_ls", "zls", "pyright", "rust_analyzer", "ts_ls" }
-local capabilities = require 'cmp_nvim_lsp'.default_capabilities()
 
 vim.lsp.config('lua_ls', {
     on_init = function(client)
@@ -171,11 +182,6 @@ vim.lsp.config('lua_ls', {
     },
 })
 
-for _, lsp_client in ipairs(wanted_lsp_clients) do
-    vim.lsp.config(lsp_client, {
-        capabilities = capabilities,
-    })
-end
 vim.lsp.enable(wanted_lsp_clients)
 
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format)
