@@ -58,6 +58,7 @@ vim.pack.add({
         src = "https://github.com/saghen/blink.cmp",
         version = "v1.6.0",
     },
+    { src = "https://github.com/L3MON4D3/LuaSnip.git" },
     { src = "https://github.com/rafamadriz/friendly-snippets" },
     { src = "https://github.com/moyiz/blink-emoji.nvim" },
     { src = "https://github.com/ntpeters/vim-better-whitespace" },
@@ -117,6 +118,7 @@ require 'blink.cmp'.setup({
     },
 
     completion = { documentation = { auto_show = true } },
+    snippets = { preset = 'luasnip' },
 
     sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer', 'emoji' },
@@ -146,6 +148,8 @@ require 'blink.cmp'.setup({
         implementation = 'prefer_rust_with_warning',
     },
 })
+-- load friendly snippets
+require("luasnip.loaders.from_vscode").lazy_load()
 
 local wanted_lsp_clients = { "lua_ls", "zls", "pyright", "rust_analyzer", "ts_ls" }
 
