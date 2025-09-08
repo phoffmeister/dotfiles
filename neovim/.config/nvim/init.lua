@@ -64,20 +64,10 @@ vim.pack.add({
     { src = "https://github.com/ntpeters/vim-better-whitespace" },
     { src = "https://github.com/tpope/vim-fugitive" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
-    { src = "https://github.com/airblade/vim-gitgutter" },
-    { src = "https://github.com/natecraddock/sessions.nvim" },
-    { src = "https://github.com/j-hui/fidget.nvim" },
     { src = "https://github.com/nvim-treesitter/nvim-treesitter-context" },
+    { src = "https://github.com/airblade/vim-gitgutter" },
+    { src = "https://github.com/j-hui/fidget.nvim" },
 })
-
--- sessions
-local sessions = require 'sessions'
-sessions.setup({
-    session_filepath = vim.fn.stdpath("data") .. "/sessions",
-    absolute = true,
-})
-vim.keymap.set('n', '<leader>ss', function() sessions.save() end)
-vim.keymap.set('n', '<leader>sl', function() sessions.load() end)
 
 -- fidget
 require("fidget").setup({
