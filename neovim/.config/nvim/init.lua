@@ -191,6 +191,9 @@ require 'nvim-tree'.setup({
         enable = true,
         ignore = false,
     },
+    update_focused_file = {
+        enable = true,
+    },
 })
 vim.keymap.set('n', '<leader>ll', ':NvimTreeToggle<CR>', { desc = 'NvimTreeToggle' })
 
