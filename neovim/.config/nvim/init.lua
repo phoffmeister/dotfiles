@@ -111,7 +111,7 @@ require 'blink.cmp'.setup({
     snippets = { preset = 'luasnip' },
 
     sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'emoji' },
+        default = { 'lsp', 'snippets', 'path', 'buffer', 'emoji' },
         providers = {
             emoji = {
                 module = "blink-emoji",
@@ -141,7 +141,7 @@ require 'blink.cmp'.setup({
 -- load friendly snippets
 require("luasnip.loaders.from_vscode").lazy_load()
 
-local wanted_lsp_clients = { "lua_ls", "zls", "pyright", "rust_analyzer", "ts_ls" }
+local wanted_lsp_clients = { "lua_ls", "zls", "pyright", "rust_analyzer", "ts_ls", "phpactor" }
 
 vim.lsp.config('lua_ls', {
     on_init = function(client)
